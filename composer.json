@@ -1,0 +1,21 @@
+{
+    "name": "vtalbot/repository-generator",
+    "description": "Repository Generator For Laravel 5",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Vincent Talbot",
+            "email": "vincent.talbot@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.9",
+        "illuminate/support": "5.1.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "VTalbot\\RepositoryGenerator\\": "src"
+        }
+    },
+    "minimum-stability": "stable"
+}

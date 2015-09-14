@@ -1,0 +1,49 @@
+<?php
+
+namespace {{namespace}};
+
+interface {{class}}
+{
+
+{{all}}    /**
+     * Get all instance of {{model}}.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection|\{{model.fullname}}[]
+     */
+    public function all();
+{{/all}}
+{{find}}    /**
+     * Find an instance of {{model}} with the given ID.
+     *
+     * @param  int  $id
+     * @return \{{model.fullname}}
+     */
+    public function find($id);
+{{/find}}
+{{create}}    /**
+     * Create a new instance of {{model}}.
+     *
+     * @param  array  $attributes
+     * @return \{{model.fullname}}
+     */
+    public function create(array $attributes = []);
+{{/create}}
+{{update}}    /**
+     * Update the {{model}} with the given attributes.
+     *
+     * @param  int    $id
+     * @param  array  $attributes
+     * @return bool|int
+     */
+    public function update($id, array $attributes = []);
+{{/update}}
+{{delete}}    /**
+     * Delete an entry with the given ID.
+     *
+     * @param  int  $id
+     * @return bool|null
+     * @throws \Exception
+     */
+    public function delete($id);
+{{/delete}}
+}
