@@ -121,7 +121,7 @@ class RepositoryMakeCommand extends Command
         $methods = $this->getMethods();
 
         if (!$this->creator->isNew($classFileName)) {
-            $this->error('The repository already exists: '.app_path($classFileName));
+            $this->error('The repository already exists: ' . app_path($classFileName));
             return;
         }
 
@@ -138,7 +138,7 @@ class RepositoryMakeCommand extends Command
 
         $this->info('Repository created: ');
         foreach ($createdClasses as $class) {
-            $this->line('  > '.$class);
+            $this->line('> ' . $class);
         }
     }
 
@@ -176,7 +176,7 @@ class RepositoryMakeCommand extends Command
     {
         $values = explode(',', $values);
 
-        array_walk($values, function(&$value) {
+        array_walk($values, function (&$value) {
             $value = trim($value);
         });
 
@@ -198,7 +198,7 @@ class RepositoryMakeCommand extends Command
         $className = str_replace($this->getAppNamespace(), '', $className);
         $className = str_replace('\\', DIRECTORY_SEPARATOR, $className);
 
-        return $className.'.php';
+        return $className . '.php';
     }
 
     /**
