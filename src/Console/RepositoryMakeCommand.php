@@ -122,7 +122,7 @@ class RepositoryMakeCommand extends Command
 
         if (!$this->creator->isNew($classFileName)) {
             $this->error('The repository already exists: '.app_path($classFileName));
-            exit(1);
+            return;
         }
 
         $createdClasses = $this->creator->create(

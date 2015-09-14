@@ -1,11 +1,19 @@
 {
     "name": "vtalbot/repository-generator",
-    "description": "Repository Generator For Laravel 5",
+    "description": "Repository Generator For Laravel 5.1",
+    "keywords": [
+        "generator",
+        "repository",
+        "laravel"
+    ],
+    "homepage": "https://github.com/vtalbot/repository-generator",
     "license": "MIT",
     "authors": [
         {
             "name": "Vincent Talbot",
-            "email": "vincent.talbot@gmail.com"
+            "email": "vincent.talbot@gmail.com",
+            "homepage": "https://github.com/vtalbot",
+            "role": "Developer"
         }
     ],
     "require": {
@@ -17,5 +25,9 @@
             "VTalbot\\RepositoryGenerator\\": "src"
         }
     },
-    "minimum-stability": "stable"
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
 }
