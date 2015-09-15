@@ -337,9 +337,9 @@ class RepositoryMakeCommand extends Command
         $modelClassName = str_replace('/', '\\', $this->input->getArgument('model'));
 
         try {
-            $reflection = new ReflectionClass($modelClassName);
-        } catch (\ReflectionException $e) {
             $reflection = new ReflectionClass($this->getAppNamespace() . $modelClassName);
+        } catch (\ReflectionException $e) {
+            $reflection = new ReflectionClass($modelClassName);
         }
 
         if (!$reflection->isSubclassOf(Model::class) || !$reflection->isInstantiable()) {
