@@ -168,7 +168,7 @@ class RepositoryMakeCommand extends Command
 
         $contents = explode('\'repositories\' => [', $config);
 
-        $content = join("'repositories' => [\n        $contract::class => $repository::class,", $contents);
+        $content = join("'repositories' => [\n         $contract::class => $repository::class,", $contents);
 
         $this->files->put(config_path('repository.php'), $content);
     }
