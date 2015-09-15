@@ -3,6 +3,7 @@
 namespace VTalbot\RepositoryGenerator\Console;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Filesystem\Filesystem;
 use ReflectionClass;
 use Illuminate\Console\Command;
 use Illuminate\Console\AppNamespaceDetectorTrait;
@@ -78,6 +79,13 @@ class RepositoryMakeCommand extends Command
     protected $model;
 
     /**
+     * The filesystem instance.
+     *
+     * @var Filesystem
+     */
+    protected $files;
+
+    /**
      * Create a new repository make command instance.
      *
      * @param  \VTalbot\RepositoryGenerator\RepositoryCreator $creator
@@ -85,8 +93,9 @@ class RepositoryMakeCommand extends Command
      * @param  string $suffix
      * @param  string $contract
      * @param  string $namespace
+     * @param  Filesystem $files
      */
-    public function __construct(RepositoryCreator $creator, $prefix, $suffix, $contract, $namespace)
+    public function __construct(RepositoryCreator $creator, $prefix, $suffix, $contract, $namespace, Filesystem $files)
     {
         parent::__construct();
 
@@ -95,6 +104,7 @@ class RepositoryMakeCommand extends Command
         $this->classNameSuffix = $suffix;
         $this->contractNamespace = $contract;
         $this->namespace = $namespace;
+        $this->files = $files;
     }
 
     /**
@@ -140,6 +150,27 @@ class RepositoryMakeCommand extends Command
         foreach ($createdClasses as $class) {
             $this->line('> ' . $class);
         }
+
+        if (count($createdClasses) > 1) {
+            $this->registerWithServiceProvider($createdClasses[1], $createdClasses[0]);
+
+            $this->info('Contract binding added into the repository config file.');
+        }
+    }
+
+    protected function registerWithServiceProvider($contract, $repository)
+    {
+        $config = $this->files->get(config_path('repository.php'));
+
+        if (array_key_exists($contract, config('repository.repositories'))) {
+            return;
+        }
+
+        $contents = explode('\'repositories\' => [', $config);
+
+        $content = join("'repositories' => [\n        $contract::class => $repository::class,", $contents);
+
+        $this->files->put(config_path('repository.php'), $content);
     }
 
     /**

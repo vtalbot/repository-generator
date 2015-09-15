@@ -45,4 +45,15 @@ return [
     */
     'namespace' => 'Repositories',
 
+    /*
+    |--------------------------------------------------------------------------
+    | Repositories Bindings
+    |--------------------------------------------------------------------------
+    |
+    | This is the array containing the bindings, contract to concrete class.
+    |
+    */
+    'repositories' => [
+    ],
+
 ];

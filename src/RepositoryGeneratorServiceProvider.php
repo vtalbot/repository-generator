@@ -4,6 +4,7 @@ namespace VTalbot\RepositoryGenerator;
 
 use Illuminate\Support\ServiceProvider;
 use VTalbot\RepositoryGenerator\Console\RepositoryMakeCommand;
+use VTalbot\RepositoryGenerator\Console\ServiceProviderMakeCommand;
 
 class RepositoryGeneratorServiceProvider extends ServiceProvider
 {
@@ -36,6 +37,7 @@ class RepositoryGeneratorServiceProvider extends ServiceProvider
     {
         $this->registerCreator();
         $this->registerMakeCommand();
+        $this->registerMakeServiceCommand();
     }
 
     /**
@@ -63,11 +65,21 @@ class RepositoryGeneratorServiceProvider extends ServiceProvider
             $contract = $app['config']['repository.contract'];
             $namespace = $app['config']['repository.namespace'];
             $creator = $app['repository.creator'];
+            $files = $app['files'];
 
-            return new RepositoryMakeCommand($creator, $prefix, $suffix, $contract, $namespace);
+            return new RepositoryMakeCommand($creator, $prefix, $suffix, $contract, $namespace, $files);
         });
 
         $this->commands('command.repository.make');
+    }
+
+    protected function registerMakeServiceCommand()
+    {
+        $this->app->singleton('command.repository.service', function($app) {
+            return new ServiceProviderMakeCommand($app['files']);
+        });
+
+        $this->commands('command.repository.service');
     }
 
     /**
@@ -79,6 +91,7 @@ class RepositoryGeneratorServiceProvider extends ServiceProvider
     {
         return [
             'command.repository.make',
+            'command.repository.service',
         ];
     }
 

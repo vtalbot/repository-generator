@@ -64,3 +64,19 @@ Repository created:
 > App\Repositories\DbUsers
 > App\Repositories\Contracts\Users
 ```
+
+If you want to automatically load the generated repositories, execute the following command:
+
+``` bash
+$ php artisan make:repository:service
+```
+
+It accept a `name` argument to define the name you want and a `--namespace` option if your providers aren't inside
+the default `app/Providers`.
+
+
+## Changelog
+
+### v1.1.0
+
+* Add repository service provider to load generated repositories with contract.
