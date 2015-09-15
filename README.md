@@ -11,12 +11,12 @@ Via Composer
 $ composer require vtalbot/repository-generator --dev
 ```
 
-Edit your `config/app.php` to add the following to the `providers` list:
+Edit your `AppServiceProvider` to add the following to the `register` method:
 
 ``` php
-    'providers' => [
-        VTalbot\RepositoryGenerator\RepositoryGeneratorServiceProvider::class,
-    ],
+    if ($this->app->environment() == 'local') {
+        $this->app->register(\VTalbot\RepositoryGenerator\RepositoryGeneratorServiceProvider::class);
+    }
 ```
 
 Then execute the command:
@@ -76,6 +76,10 @@ the default `app/Providers`.
 
 
 ## Changelog
+
+### v1.1.1
+
+* Fix class reflection test order.
 
 ### v1.1.0
 
