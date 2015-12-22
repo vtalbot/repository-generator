@@ -1,6 +1,6 @@
 {
     "name": "vtalbot/repository-generator",
-    "description": "Repository Generator For Laravel 5.1",
+    "description": "Repository Generator For Laravel 5",
     "keywords": [
         "generator",
         "repository",
@@ -18,7 +18,7 @@
     ],
     "require": {
         "php": ">=5.5.9",
-        "illuminate/support": "5.1.*"
+        "illuminate/support": "5.1.*|5.2.*"
     },
     "autoload": {
         "psr-4": {
