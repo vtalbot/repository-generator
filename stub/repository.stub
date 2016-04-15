@@ -7,7 +7,6 @@ use {{model.fullname}};
 
 class {{class}}{{implementation}}
 {
-
 {{all}}    /**
      * Get all instance of {{model}}.
      *
@@ -29,7 +28,7 @@ class {{class}}{{implementation}}
         return {{model}}::find($id);
     }
 {{/find}}
-{{create}}   /**
+{{create}}    /**
      * Create a new instance of {{model}}.
      *
      * @param  array  $attributes

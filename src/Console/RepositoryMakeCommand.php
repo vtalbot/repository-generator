@@ -7,6 +7,8 @@ use Illuminate\Filesystem\Filesystem;
 use ReflectionClass;
 use Illuminate\Console\Command;
 use Illuminate\Console\AppNamespaceDetectorTrait;
+use Symfony\Component\Process\Exception\ProcessFailedException;
+use Symfony\Component\Process\Process;
 use VTalbot\RepositoryGenerator\Exceptions\NotAnInstanceOfException;
 use VTalbot\RepositoryGenerator\RepositoryCreator;
 
@@ -155,6 +157,16 @@ class RepositoryMakeCommand extends Command
             $this->registerWithServiceProvider($createdClasses[1], $createdClasses[0]);
 
             $this->info('Contract binding added into the repository config file.');
+        }
+
+        $fixers = 'extra_empty_lines,no_blank_lines_after_class_opening';
+        $level = 'psr2';
+        $paths = [$classFileName, $contractFileName];
+
+        foreach ($paths as $path) {
+            $path = app_path($path);
+            $process = new Process("vendor/bin/php-cs-fixer fix {$path} --level={$level} --fixers={$fixers}");
+            $process->run();
         }
     }
 

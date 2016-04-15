@@ -1,4 +1,4 @@
-# Repository Generator for Laravel 5.1
+# Repository Generator for Laravel 5.2
 
 This package offer the possibility to generate repository based on the give model.
 
@@ -22,7 +22,7 @@ Edit your `AppServiceProvider` to add the following to the `register` method:
 Then execute the command:
 
 ``` bash
-$ php artisan vendor:publish
+$ php artisan vendor:publish  --provider="VTalbot\RepositoryGenerator\RepositoryGeneratorServiceProvider" --tag=config
 ```
 
 Edit `config/repository.php` to your needs.
@@ -76,6 +76,14 @@ the default `app/Providers`.
 
 
 ## Changelog
+
+### v1.1.3
+
+* Fix newly created classes code style.
+
+### v1.1.2
+
+* Add support for Laravel 5.2.
 
 ### v1.1.1
 

@@ -25,7 +25,7 @@ class RepositoryGeneratorServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__ . '/../config/repository.php' => config_path('repository.php'),
-        ]);
+        ], 'config');
     }
 
     /**

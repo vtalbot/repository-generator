@@ -6,7 +6,6 @@ use Illuminate\Support\ServiceProvider;
 
 class {{class}} extends ServiceProvider
 {
-
     /**
      * Indicates if loading of the provider is deferred.
      *
@@ -27,5 +26,4 @@ class {{class}} extends ServiceProvider
             $this->app->bind($contract, $repository);
         }
     }
-
 }

@@ -4,7 +4,6 @@ namespace {{namespace}};
 
 interface {{class}}
 {
-
 {{all}}    /**
      * Get all instance of {{model}}.
      *
